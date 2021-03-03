@@ -1,0 +1,2 @@
+module Api::PhysicianHelper
+end

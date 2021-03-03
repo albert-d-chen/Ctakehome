@@ -1,0 +1,1 @@
+json.extract! @physician, :id, :first_name, :last_name

@@ -1,0 +1,27 @@
+// Place all the styles related to the api/physicians controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.physician-names {
+    display: inline-block;
+    position: absolute;
+}
+
+.appointments{
+    display: inline-block;
+    position: relative;
+    left: 200px;
+    // top: 15px;
+}
+
+//cursor pointer and change color on hover of doctor's name
+.names:hover{
+    cursor:pointer;
+    background-color: rgb(122, 200, 226);
+}
+
+.logout{
+    position: relative;
+    left: 20px;
+    top: 15px;
+    cursor: pointer;
+}
