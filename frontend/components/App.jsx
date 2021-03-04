@@ -1,14 +1,13 @@
 import React from "react";
 
-import PhysiciansContainer from '../components/physician_index_container';
-
+import MainContainer from '../components/main'
 
 class App extends React.Component {
   render () {
     return (
       <div>
-        <h1>Notable Health</h1>
-        <PhysiciansContainer />
+        <h1>Cellares</h1>
+        <MainContainer />
       </div>
     );
   }
