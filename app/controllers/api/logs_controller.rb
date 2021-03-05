@@ -16,6 +16,8 @@ class Api::LogsController < ApplicationController
         
         if @log.save
             render :index
+        else 
+            render :index
         end
     end
 

@@ -245,7 +245,8 @@ var Main = /*#__PURE__*/function (_React$Component) {
       status: 'Stopped',
       data: 'N/A',
       timeRemaining: 0,
-      timeSet: 0
+      timeSet: 0,
+      view: false
     };
     _this.handleTimer = _this.handleTimer.bind(_assertThisInitialized(_this));
     _this.tick = _this.tick.bind(_assertThisInitialized(_this));
@@ -256,6 +257,46 @@ var Main = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Main, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.getLogs();
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      var _this2 = this;
+
+      if (prevState.connected !== this.state.connected) {
+        this.props.createLog(_objectSpread({}, this.state)).then(function () {
+          return _this2.props.getLogs();
+        });
+      }
+
+      if (prevState.status !== this.state.status) {
+        this.props.createLog(_objectSpread({}, this.state)).then(function () {
+          return _this2.props.getLogs();
+        });
+      }
+
+      if (prevState.data !== this.state.data) {
+        this.props.createLog(_objectSpread({}, this.state)).then(function () {
+          return _this2.props.getLogs();
+        });
+      }
+
+      if (prevState.timeRemaining !== this.state.timeRemaining) {
+        this.props.createLog(_objectSpread({}, this.state)).then(function () {
+          return _this2.props.getLogs();
+        });
+      }
+
+      if (prevState.timeSet !== this.state.timeSet) {
+        this.props.createLog(_objectSpread({}, this.state)).then(function () {
+          return _this2.props.getLogs();
+        });
+      }
+    }
+  }, {
     key: "handleConnect",
     value: function handleConnect() {
       if (this.state.connected === false) {
@@ -271,7 +312,7 @@ var Main = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "tick",
     value: function tick() {
-      if (this.state.timeRemaining <= 0) {
+      if (this.state.timeRemaining === 0) {
         clearInterval(this.handleCountdown);
         this.setState({
           status: 'Stopped'
@@ -281,8 +322,6 @@ var Main = /*#__PURE__*/function (_React$Component) {
           timeRemaining: this.state.timeRemaining - 1,
           data: Math.floor(Math.random() * Math.floor(101))
         });
-        debugger;
-        this.props.createLog(_objectSpread({}, this.state));
 
         if (this.state.timeRemaining === 0) {
           this.reset();
@@ -296,7 +335,7 @@ var Main = /*#__PURE__*/function (_React$Component) {
         if (this.state.status === 'Stopped') {
           this.setState({
             status: 'Started'
-          });
+          }); // this.props.createLog({...this.state})
         } else {
           this.setState({
             status: 'Stopped'
@@ -321,31 +360,47 @@ var Main = /*#__PURE__*/function (_React$Component) {
       dropDown.selectedIndex = 0;
     }
   }, {
+    key: "handleLogs",
+    value: function handleLogs() {
+      this.setState({
+        view: !this.state.view
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
+      var logs = this.props.logs.map(function (log, idx) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+          key: idx
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, idx), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, log.connected.toString()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, log.status), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, log.timeSet), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, log.timeRemaining), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, log.data));
+      });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.connected === false ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this2.handleConnect();
+          return _this3.handleConnect();
         }
       }, "Connect") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this2.handleConnect();
+          return _this3.handleConnect();
         }
       }, "Disconnect")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.status === 'Stopped' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this2.handleStatus();
+          return _this3.handleStatus();
         }
       }, "Start") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this2.handleStatus();
+          return _this3.handleStatus();
         }
       }, "Stop")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_timer__WEBPACK_IMPORTED_MODULE_1__["default"], {
         mainCallback: this.handleTimer,
         timeRemaining: this.state.timeRemaining,
         status: this.state.status
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Data: ", this.state.data));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Data: ", this.state.data), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this3.handleLogs();
+        }
+      }, this.state.view === false ? 'View Logs' : 'Hide Logs'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.view === true ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "ID"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Connected"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Status"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Time Set"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Time Remaining"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Data")), logs)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)));
     }
   }]);
 
@@ -373,7 +428,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapSTP = function mapSTP(state) {
-  return {};
+  return {
+    logs: Object.values(state.logs)
+  };
 };
 
 var mapDTP = function mapDTP(dispatch) {
@@ -477,7 +534,7 @@ var Timer = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this = this;
 
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " Select Time (s):", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " Select Time(s):", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
         id: "dropdown",
         onChange: function onChange() {
           return _this.onTrigger();

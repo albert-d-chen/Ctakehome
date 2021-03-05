@@ -12,7 +12,7 @@ class Timer extends React.Component{
     render() {
         return (
             <div>
-                <div> Select Time (s):
+                <div> Select Time(s):
                     <select id='dropdown' onChange={() => this.onTrigger()}>
                         <option value="0">0</option>
                         <option value="1">1</option>

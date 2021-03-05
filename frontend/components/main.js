@@ -10,12 +10,40 @@ class Main extends React.Component{
             status: 'Stopped',
             data: 'N/A',
             timeRemaining: 0,
-            timeSet: 0
+            timeSet: 0,
+            view: false
         }
 
         this.handleTimer = this.handleTimer.bind(this);
         this.tick = this.tick.bind(this);
         this.intervalHandle = setInterval(() => this.tick(), 1000);
+    }
+
+    componentDidMount() {
+        this.props.getLogs();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.connected !== this.state.connected) {
+            this.props.createLog({...this.state})
+                .then(() => this.props.getLogs())
+        }
+        if (prevState.status !== this.state.status) {
+            this.props.createLog({...this.state})
+                .then(() => this.props.getLogs())
+        }
+        if (prevState.data !== this.state.data) {
+            this.props.createLog({...this.state})
+                .then(() => this.props.getLogs())
+        }
+        if (prevState.timeRemaining !== this.state.timeRemaining) {
+            this.props.createLog({...this.state})
+                .then(() => this.props.getLogs())
+        }
+        if (prevState.timeSet !== this.state.timeSet) {
+            this.props.createLog({...this.state})
+                .then(() => this.props.getLogs())
+        }
     }
 
     handleConnect() {
@@ -31,7 +59,7 @@ class Main extends React.Component{
     }
 
     tick() {
-        if (this.state.timeRemaining <= 0) {
+        if (this.state.timeRemaining === 0) {
             clearInterval(this.handleCountdown)
             this.setState({
                 status: 'Stopped'
@@ -41,8 +69,7 @@ class Main extends React.Component{
                 timeRemaining: this.state.timeRemaining - 1,
                 data: Math.floor(Math.random() * Math.floor(101))
             })
-            debugger
-            this.props.createLog({...this.state})
+
             if (this.state.timeRemaining === 0) {
                 this.reset();
             }
@@ -55,6 +82,7 @@ class Main extends React.Component{
                 this.setState({
                     status: 'Started'
                 })
+                // this.props.createLog({...this.state})
             } else {
                 this.setState({
                     status: 'Stopped'
@@ -77,7 +105,24 @@ class Main extends React.Component{
         dropDown.selectedIndex = 0;
     }
 
+    handleLogs() {
+        this.setState({
+            view: !this.state.view
+        })
+    }
+
     render() {
+        const logs = this.props.logs.map((log, idx) => (
+            <tr key={idx}>
+                <td>{idx}</td>
+                <td>{log.connected.toString()}</td>
+                <td>{log.status}</td>
+                <td>{log.timeSet}</td>
+                <td>{log.timeRemaining}</td>
+                <td>{log.data}</td>
+            </tr>
+        ));
+
         return (
             <div>
                 <div>
@@ -94,6 +139,27 @@ class Main extends React.Component{
                 <div>
                     Data: {this.state.data}
                 </div>
+                <button onClick={() => this.handleLogs()}>{this.state.view === false ? 'View Logs' : 'Hide Logs'}</button>
+                <div>
+                    {this.state.view === true ?
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>ID</th>
+                                <th>Connected</th>
+                                <th>Status</th>
+                                <th>Time Set</th>
+                                <th>Time Remaining</th>
+                                <th>Data</th>
+                            </tr>
+                            {logs}
+                            
+                        </tbody>
+                    </table> :
+                    <div></div>
+                    }
+                </div>
+                
             </div>
         )
     }

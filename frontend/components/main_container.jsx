@@ -3,6 +3,7 @@ import {createLog, getLogs} from '../actions/log_actions'
 import Main from './main';
 
 const mapSTP = (state) => ({
+    logs: Object.values(state.logs)
 })
 
 const mapDTP = (dispatch) => ({
