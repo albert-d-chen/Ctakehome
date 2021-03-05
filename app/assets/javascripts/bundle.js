@@ -260,37 +260,15 @@ var Main = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.getLogs();
-    }
+    } //problems with the exact update
+    //will not create on connection state change
+
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
       var _this2 = this;
 
-      if (prevState.connected !== this.state.connected) {
-        this.props.createLog(_objectSpread({}, this.state)).then(function () {
-          return _this2.props.getLogs();
-        });
-      }
-
-      if (prevState.status !== this.state.status) {
-        this.props.createLog(_objectSpread({}, this.state)).then(function () {
-          return _this2.props.getLogs();
-        });
-      }
-
-      if (prevState.data !== this.state.data) {
-        this.props.createLog(_objectSpread({}, this.state)).then(function () {
-          return _this2.props.getLogs();
-        });
-      }
-
-      if (prevState.timeRemaining !== this.state.timeRemaining) {
-        this.props.createLog(_objectSpread({}, this.state)).then(function () {
-          return _this2.props.getLogs();
-        });
-      }
-
-      if (prevState.timeSet !== this.state.timeSet) {
+      if (prevState.connected !== this.state.connected || prevState.status !== this.state.status || prevState.timeRemaining !== this.state.timeRemaining || prevState.timeSet !== this.state.timeSet) {
         this.props.createLog(_objectSpread({}, this.state)).then(function () {
           return _this2.props.getLogs();
         });
@@ -335,7 +313,7 @@ var Main = /*#__PURE__*/function (_React$Component) {
         if (this.state.status === 'Stopped') {
           this.setState({
             status: 'Started'
-          }); // this.props.createLog({...this.state})
+          });
         } else {
           this.setState({
             status: 'Stopped'

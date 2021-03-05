@@ -23,24 +23,13 @@ class Main extends React.Component{
         this.props.getLogs();
     }
 
+    //problems with the exact update
+    //will not create on connection state change
     componentDidUpdate(prevProps, prevState) {
-        if (prevState.connected !== this.state.connected) {
-            this.props.createLog({...this.state})
-                .then(() => this.props.getLogs())
-        }
-        if (prevState.status !== this.state.status) {
-            this.props.createLog({...this.state})
-                .then(() => this.props.getLogs())
-        }
-        if (prevState.data !== this.state.data) {
-            this.props.createLog({...this.state})
-                .then(() => this.props.getLogs())
-        }
-        if (prevState.timeRemaining !== this.state.timeRemaining) {
-            this.props.createLog({...this.state})
-                .then(() => this.props.getLogs())
-        }
-        if (prevState.timeSet !== this.state.timeSet) {
+        if (prevState.connected !== this.state.connected ||
+            prevState.status !== this.state.status ||
+            prevState.timeRemaining !== this.state.timeRemaining ||
+            prevState.timeSet !== this.state.timeSet) {
             this.props.createLog({...this.state})
                 .then(() => this.props.getLogs())
         }
@@ -82,7 +71,6 @@ class Main extends React.Component{
                 this.setState({
                     status: 'Started'
                 })
-                // this.props.createLog({...this.state})
             } else {
                 this.setState({
                     status: 'Stopped'
@@ -153,13 +141,11 @@ class Main extends React.Component{
                                 <th>Data</th>
                             </tr>
                             {logs}
-                            
                         </tbody>
                     </table> :
                     <div></div>
                     }
                 </div>
-                
             </div>
         )
     }
