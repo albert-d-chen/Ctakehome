@@ -1,5 +1,5 @@
 # README
-# Cellares Health Coding Challenge
+# Cellares Coding Challenge
 
 ### `Framework:`
 
@@ -40,4 +40,4 @@ In browser:
  5. Press View Logs to see logs created in database whenever a state changes (timeSet, timeRemaining, data, start/stop)
 
 Side-notes:
-Basic features should be functional. I was unsure about the database integration and when a new log should be created (which state change should create a new log), so I made it so it makes a new log everytime a state aspect changes. There is one issue with this, as a new log is not created only for the state for if it connects or disconnects. This could potentially be fixed through refactoring to hooks. Another feature I need to implement is determining if the power is on of the actual hardware. This could be done through adding a value to the state for the power status and checking it before running the software.
+Basic features should be functional. I was unsure about the database integration and when a new log should be created (which state change should create a new log), so I made it so it makes a new log everytime a state aspect changes. There is one issue with this, as a new log is not created only for the state for if it connects or disconnects. This could potentially be fixed through refactoring to hooks. In addition, I did seed 1 sample data in it just to have something in the log table.Another feature I need to implement is determining if the power is on of the actual hardware. This could be done through adding a value to the state for the power status and checking it before the software can connect.
