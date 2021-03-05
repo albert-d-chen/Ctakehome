@@ -1,3 +1,148 @@
 // Place all the styles related to the api/logs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+.header {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    text-align: center;
+    background: #1abc9c;
+    color: white;
+    font-size: 30px;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.ui {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.connect{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+    padding-top: 30px;
+}
+
+.data{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.status{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.time-remaining{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.select-time{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.logs {
+    display: flex;
+    justify-content: center;
+}
+
+.logs-table{
+    padding-top: 20px;
+}
+
+.connect-button1{
+    background-color: rgb(169, 223, 241);
+    cursor: pointer;
+    outline: none;
+    border-radius: 5px;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.connect-button1:hover{
+    background-color: rgb(76, 195, 235);
+}
+
+.connect-button2:hover {
+    background-color: rgb(245, 82, 82);
+}
+
+.connect-button2{
+    background-color: rgb(243, 138, 138);
+    cursor: pointer;
+    outline: none;
+    border-radius: 5px;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.status-button1{
+    background-color: rgb(174, 248, 174);
+    cursor: pointer;
+    outline: none;
+    border-radius: 5px;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.status-button1:hover {
+    background-color: rgb(42, 240, 42);
+}
+
+.status-button2{
+    background-color: lightgreen;
+    cursor: pointer;
+    outline: none;
+    border-radius: 5px;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.logs-button{
+    background-color: lightgrey;
+    cursor: pointer;
+    outline: none;
+    border-radius: 5px;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.logs-button:hover{
+    background-color: lightslategrey;
+}
+
+option:focus{
+    background-color:#FFF;
+    outline:none;
+    border:none;
+    box-shadow:none;
+}

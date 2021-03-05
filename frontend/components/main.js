@@ -112,23 +112,25 @@ class Main extends React.Component{
         ));
 
         return (
-            <div>
-                <div>
+            <div className='ui'>
+                <div className='connect'>
                     {this.state.connected === false ? 
-                    <button onClick={() => this.handleConnect()}>Connect</button> :
-                    <button onClick={() => this.handleConnect()}>Disconnect</button>}
+                    <button className='connect-button1' onClick={() => this.handleConnect()}>Connect</button> :
+                    <button className='connect-button2' onClick={() => this.handleConnect()}>Disconnect</button>}
                 </div>
-                <div>
+                <div className='status'>
                     {this.state.status === 'Stopped' ? 
-                    <button onClick={() => this.handleStatus()}>Start</button> :
-                    <button onClick={() => this.handleStatus()}>Stop</button>}
+                    <button className='status-button1' onClick={() => this.handleStatus()}>Start</button> :
+                    <button className='status-button2' onClick={() => this.handleStatus()}>Stop</button>}
                 </div>
                 <Timer mainCallback={this.handleTimer} timeRemaining={this.state.timeRemaining} status={this.state.status}/>
-                <div>
+                <div className='data'>
                     Data: {this.state.data}
                 </div>
-                <button onClick={() => this.handleLogs()}>{this.state.view === false ? 'View Logs' : 'Hide Logs'}</button>
-                <div>
+                <div className='logs'>
+                    <button className='logs-button' onClick={() => this.handleLogs()}>{this.state.view === false ? 'View Logs' : 'Hide Logs'}</button>
+                </div>
+                <div className='logs-table'>
                     {this.state.view === true ?
                     <table>
                         <tbody>

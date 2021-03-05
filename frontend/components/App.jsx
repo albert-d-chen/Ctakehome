@@ -6,7 +6,7 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <h1>Cellares</h1>
+        <h1 className='header'>Cellares</h1>
         <MainContainer />
       </div>
     );
