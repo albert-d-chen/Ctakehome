@@ -119,9 +119,12 @@ time, mark, audio, video {
 .status-button1:hover {
     background-color: rgb(42, 240, 42);
 }
+.status-button2:hover {
+    background-color: rgb(245, 82, 82);
+}
 
 .status-button2{
-    background-color: lightgreen;
+    background-color: rgb(243, 138, 138);
     cursor: pointer;
     outline: none;
     border-radius: 5px;
