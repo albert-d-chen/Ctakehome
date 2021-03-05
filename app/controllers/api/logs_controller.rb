@@ -22,6 +22,8 @@ class Api::LogsController < ApplicationController
     private
 
     def logs_params
-        params.require(:logs).permit(:timeSet, :timeRemaining, :connected, :status, :data)
+        params.require(:log).permit(:id, :timeSet, :timeRemaining, :connected, :status, :data)
     end
 end
+
+

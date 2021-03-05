@@ -86,88 +86,40 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./frontend/actions/appointment_actions.js":
-/*!*************************************************!*\
-  !*** ./frontend/actions/appointment_actions.js ***!
-  \*************************************************/
-/*! exports provided: RECEIVE_APPOINTMENTS, receiveAppointments, getAppointments, createAppointment */
+/***/ "./frontend/actions/log_actions.js":
+/*!*****************************************!*\
+  !*** ./frontend/actions/log_actions.js ***!
+  \*****************************************/
+/*! exports provided: RECEIVE_LOGS, receiveLogs, getLogs, createLog */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_APPOINTMENTS", function() { return RECEIVE_APPOINTMENTS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveAppointments", function() { return receiveAppointments; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAppointments", function() { return getAppointments; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createAppointment", function() { return createAppointment; });
-/* harmony import */ var _util_appointment_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/appointment_api_util */ "./frontend/util/appointment_api_util.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_LOGS", function() { return RECEIVE_LOGS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveLogs", function() { return receiveLogs; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLogs", function() { return getLogs; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createLog", function() { return createLog; });
+/* harmony import */ var _util_log_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/log_api_util */ "./frontend/util/log_api_util.js");
 
-var RECEIVE_APPOINTMENTS = "RECEIVE_APPOINTMENTS";
-var receiveAppointments = function receiveAppointments(appointments) {
+var RECEIVE_LOGS = "RECEIVE_LOGS";
+var receiveLogs = function receiveLogs(logs) {
   return {
-    type: RECEIVE_APPOINTMENTS,
-    appointments: appointments
+    type: RECEIVE_LOGS,
+    logs: logs
   };
 };
-var getAppointments = function getAppointments() {
+var getLogs = function getLogs() {
   return function (dispatch) {
-    return _util_appointment_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAppointments"]().then(function (appointments) {
-      return dispatch(receiveAppointments(appointments));
+    return _util_log_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchLogs"]().then(function (logs) {
+      return dispatch(receiveLogs(logs));
     });
   };
 };
-var createAppointment = function createAppointment(appointment) {
+var createLog = function createLog(log) {
   return function (dispatch) {
-    return _util_appointment_api_util__WEBPACK_IMPORTED_MODULE_0__["createAppointment"](appointment);
+    return _util_log_api_util__WEBPACK_IMPORTED_MODULE_0__["createLog"](log);
   };
 }; // .then((appointments) => dispatch(receiveAppointments(appointments)))
-
-/***/ }),
-
-/***/ "./frontend/actions/physician_actions.js":
-/*!***********************************************!*\
-  !*** ./frontend/actions/physician_actions.js ***!
-  \***********************************************/
-/*! exports provided: RECEIVE_PHYSICIAN, RECEIVE_PHYSICIANS, receivePhysician, receivePhysicians, getPhysician, getPhysicians */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_PHYSICIAN", function() { return RECEIVE_PHYSICIAN; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_PHYSICIANS", function() { return RECEIVE_PHYSICIANS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receivePhysician", function() { return receivePhysician; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receivePhysicians", function() { return receivePhysicians; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPhysician", function() { return getPhysician; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPhysicians", function() { return getPhysicians; });
-/* harmony import */ var _util_physician_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/physician_api_util */ "./frontend/util/physician_api_util.js");
-
-var RECEIVE_PHYSICIAN = 'RECEIVE_PHYSICIAN';
-var RECEIVE_PHYSICIANS = 'RECEIVE_PHYSICIANS';
-var receivePhysician = function receivePhysician(physician) {
-  return {
-    type: RECEIVE_PHYSICIAN,
-    physician: physician
-  };
-};
-var receivePhysicians = function receivePhysicians(physicians) {
-  return {
-    type: RECEIVE_PHYSICIANS,
-    physicians: physicians
-  };
-};
-var getPhysician = function getPhysician(physicianId) {
-  return function (dispatch) {
-    return _util_physician_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchPhysician"](physicianId).then(function (physician) {
-      return dispatch(receivePhysician(physician));
-    });
-  };
-};
-var getPhysicians = function getPhysicians() {
-  return function (dispatch) {
-    return _util_physician_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchPhysicians"]().then(function (physicians) {
-      return dispatch(receivePhysicians(physicians));
-    });
-  };
-};
 
 /***/ }),
 
@@ -182,7 +134,7 @@ var getPhysicians = function getPhysicians() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_main__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/main */ "./frontend/components/main.js");
+/* harmony import */ var _components_main_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/main_container */ "./frontend/components/main_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -222,7 +174,7 @@ var App = /*#__PURE__*/function (_React$Component) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Cellares"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_main__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Cellares"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_main_container__WEBPACK_IMPORTED_MODULE_1__["default"], null));
     }
   }]);
 
@@ -247,6 +199,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _timer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./timer */ "./frontend/components/timer.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -324,6 +282,7 @@ var Main = /*#__PURE__*/function (_React$Component) {
           data: Math.floor(Math.random() * Math.floor(101))
         });
         debugger;
+        this.props.createLog(_objectSpread({}, this.state));
 
         if (this.state.timeRemaining === 0) {
           this.reset();
@@ -352,7 +311,7 @@ var Main = /*#__PURE__*/function (_React$Component) {
     value: function handleTimer() {
       this.setState({
         timeRemaining: event.target.value,
-        timeSet: event.target.value
+        timeSet: parseInt(event.target.value)
       });
     }
   }, {
@@ -394,6 +353,41 @@ var Main = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (Main);
+
+/***/ }),
+
+/***/ "./frontend/components/main_container.jsx":
+/*!************************************************!*\
+  !*** ./frontend/components/main_container.jsx ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_log_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/log_actions */ "./frontend/actions/log_actions.js");
+/* harmony import */ var _main__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./main */ "./frontend/components/main.js");
+
+
+
+
+var mapSTP = function mapSTP(state) {
+  return {};
+};
+
+var mapDTP = function mapDTP(dispatch) {
+  return {
+    createLog: function createLog(log) {
+      return dispatch(Object(_actions_log_actions__WEBPACK_IMPORTED_MODULE_1__["createLog"])(log));
+    },
+    getLogs: function getLogs(logs) {
+      return dispatch(Object(_actions_log_actions__WEBPACK_IMPORTED_MODULE_1__["getLogs"])(logs));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapSTP, mapDTP)(_main__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 
@@ -550,68 +544,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
 /***/ }),
 
-/***/ "./frontend/reducers/appointments_reducer.js":
-/*!***************************************************!*\
-  !*** ./frontend/reducers/appointments_reducer.js ***!
-  \***************************************************/
+/***/ "./frontend/reducers/logs_reducer.js":
+/*!*******************************************!*\
+  !*** ./frontend/reducers/logs_reducer.js ***!
+  \*******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _actions_appointment_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/appointment_actions */ "./frontend/actions/appointment_actions.js");
+/* harmony import */ var _actions_log_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/log_actions */ "./frontend/actions/log_actions.js");
 
 
-var appointmentsReducer = function appointmentsReducer() {
+var logsReducer = function logsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
 
   switch (action.type) {
-    case _actions_appointment_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_APPOINTMENTS"]:
-      return Object.assign({}, state, action.appointments);
+    case _actions_log_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_LOGS"]:
+      return Object.assign({}, state, action.logs);
 
     default:
       return state;
   }
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (appointmentsReducer);
-
-/***/ }),
-
-/***/ "./frontend/reducers/physicians_reducer.js":
-/*!*************************************************!*\
-  !*** ./frontend/reducers/physicians_reducer.js ***!
-  \*************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _actions_physician_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/physician_actions */ "./frontend/actions/physician_actions.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-var physiciansReducer = function physiciansReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-  Object.freeze(state);
-
-  switch (action.type) {
-    case _actions_physician_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_PHYSICIAN"]:
-      return _defineProperty({}, action.physician.id, action.physician);
-
-    case _actions_physician_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_PHYSICIANS"]:
-      return Object.assign({}, state, action.physicians);
-
-    default:
-      return state;
-  }
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (physiciansReducer);
+/* harmony default export */ __webpack_exports__["default"] = (logsReducer);
 
 /***/ }),
 
@@ -625,14 +584,11 @@ var physiciansReducer = function physiciansReducer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _appointments_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./appointments_reducer */ "./frontend/reducers/appointments_reducer.js");
-/* harmony import */ var _physicians_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./physicians_reducer */ "./frontend/reducers/physicians_reducer.js");
-
+/* harmony import */ var _logs_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./logs_reducer */ "./frontend/reducers/logs_reducer.js");
 
 
 var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  physicians: _physicians_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
-  appointments: _appointments_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  logs: _logs_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (rootReducer);
 
@@ -666,56 +622,30 @@ var configureStore = function configureStore() {
 
 /***/ }),
 
-/***/ "./frontend/util/appointment_api_util.js":
-/*!***********************************************!*\
-  !*** ./frontend/util/appointment_api_util.js ***!
-  \***********************************************/
-/*! exports provided: fetchAppointments, createAppointment */
+/***/ "./frontend/util/log_api_util.js":
+/*!***************************************!*\
+  !*** ./frontend/util/log_api_util.js ***!
+  \***************************************/
+/*! exports provided: fetchLogs, createLog */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAppointments", function() { return fetchAppointments; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createAppointment", function() { return createAppointment; });
-var fetchAppointments = function fetchAppointments() {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchLogs", function() { return fetchLogs; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createLog", function() { return createLog; });
+var fetchLogs = function fetchLogs() {
   return $.ajax({
     method: "GET",
-    url: "/api/appointments"
+    url: "/api/logs"
   });
 };
-var createAppointment = function createAppointment(appointment) {
+var createLog = function createLog(log) {
   return $.ajax({
     method: 'POST',
-    url: "/api/appointments",
+    url: "/api/logs",
     data: {
-      appointment: appointment
+      log: log
     }
-  });
-};
-
-/***/ }),
-
-/***/ "./frontend/util/physician_api_util.js":
-/*!*********************************************!*\
-  !*** ./frontend/util/physician_api_util.js ***!
-  \*********************************************/
-/*! exports provided: fetchPhysician, fetchPhysicians */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPhysician", function() { return fetchPhysician; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPhysicians", function() { return fetchPhysicians; });
-var fetchPhysician = function fetchPhysician(physicianId) {
-  return $.ajax({
-    method: 'GET',
-    url: "/api/physicians/".concat(physicianId)
-  });
-};
-var fetchPhysicians = function fetchPhysicians() {
-  return $.ajax({
-    method: 'GET',
-    url: "/api/physicians"
   });
 };
 

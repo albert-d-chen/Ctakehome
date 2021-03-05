@@ -42,6 +42,7 @@ class Main extends React.Component{
                 data: Math.floor(Math.random() * Math.floor(101))
             })
             debugger
+            this.props.createLog({...this.state})
             if (this.state.timeRemaining === 0) {
                 this.reset();
             }
@@ -67,7 +68,7 @@ class Main extends React.Component{
     handleTimer() {
         this.setState({
             timeRemaining: event.target.value,
-            timeSet: event.target.value
+            timeSet: parseInt(event.target.value)
         })
     }
 

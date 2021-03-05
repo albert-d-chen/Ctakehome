@@ -1,6 +1,6 @@
 import React from "react";
 
-import MainContainer from '../components/main'
+import MainContainer from '../components/main_container'
 
 class App extends React.Component {
   render () {
