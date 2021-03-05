@@ -7,10 +7,10 @@ class Main extends React.Component{
         super(props)
         this.state = {
             connected: false,
-            status: false,
-            power: false,
+            status: 'Stopped',
             data: 'N/A',
             timeRemaining: 0,
+            timeSet: 0
         }
 
         this.handleTimer = this.handleTimer.bind(this);
@@ -34,13 +34,14 @@ class Main extends React.Component{
         if (this.state.timeRemaining <= 0) {
             clearInterval(this.handleCountdown)
             this.setState({
-                status: false
+                status: 'Stopped'
             })
-        } else if (this.state.status === true && this.state.connected === true){
+        } else if (this.state.status === 'Started' && this.state.connected === true){
             this.setState({
                 timeRemaining: this.state.timeRemaining - 1,
                 data: Math.floor(Math.random() * Math.floor(101))
             })
+            debugger
             if (this.state.timeRemaining === 0) {
                 this.reset();
             }
@@ -49,13 +50,13 @@ class Main extends React.Component{
 
     handleStatus() {
         if (this.state.connected === true) {
-            if (this.state.status === false) {
+            if (this.state.status === 'Stopped') {
                 this.setState({
-                    status: true
+                    status: 'Started'
                 })
             } else {
                 this.setState({
-                    status: false
+                    status: 'Stopped'
                 })
             }
         } else {
@@ -65,7 +66,8 @@ class Main extends React.Component{
 
     handleTimer() {
         this.setState({
-            timeRemaining: event.target.value
+            timeRemaining: event.target.value,
+            timeSet: event.target.value
         })
     }
 
@@ -83,7 +85,7 @@ class Main extends React.Component{
                     <button onClick={() => this.handleConnect()}>Disconnect</button>}
                 </div>
                 <div>
-                    {this.state.status === false ? 
+                    {this.state.status === 'Stopped' ? 
                     <button onClick={() => this.handleStatus()}>Start</button> :
                     <button onClick={() => this.handleStatus()}>Stop</button>}
                 </div>

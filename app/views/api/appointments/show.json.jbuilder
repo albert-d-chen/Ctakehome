@@ -1,1 +1,0 @@
-json.extract! @appointment, :id, :name, :time, :kind, :physician_id

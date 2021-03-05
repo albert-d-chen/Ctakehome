@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Api::AppointmentsControllerTest < ActionDispatch::IntegrationTest
+class LogTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

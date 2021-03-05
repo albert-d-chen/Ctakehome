@@ -1,0 +1,1 @@
+json.extract! @log, :id, :timeSet, :timeRemaining, :connected, :status, :data

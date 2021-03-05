@@ -284,10 +284,10 @@ var Main = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       connected: false,
-      status: false,
-      power: false,
+      status: 'Stopped',
       data: 'N/A',
-      timeRemaining: 0
+      timeRemaining: 0,
+      timeSet: 0
     };
     _this.handleTimer = _this.handleTimer.bind(_assertThisInitialized(_this));
     _this.tick = _this.tick.bind(_assertThisInitialized(_this));
@@ -316,13 +316,14 @@ var Main = /*#__PURE__*/function (_React$Component) {
       if (this.state.timeRemaining <= 0) {
         clearInterval(this.handleCountdown);
         this.setState({
-          status: false
+          status: 'Stopped'
         });
-      } else if (this.state.status === true && this.state.connected === true) {
+      } else if (this.state.status === 'Started' && this.state.connected === true) {
         this.setState({
           timeRemaining: this.state.timeRemaining - 1,
           data: Math.floor(Math.random() * Math.floor(101))
         });
+        debugger;
 
         if (this.state.timeRemaining === 0) {
           this.reset();
@@ -333,13 +334,13 @@ var Main = /*#__PURE__*/function (_React$Component) {
     key: "handleStatus",
     value: function handleStatus() {
       if (this.state.connected === true) {
-        if (this.state.status === false) {
+        if (this.state.status === 'Stopped') {
           this.setState({
-            status: true
+            status: 'Started'
           });
         } else {
           this.setState({
-            status: false
+            status: 'Stopped'
           });
         }
       } else {
@@ -350,7 +351,8 @@ var Main = /*#__PURE__*/function (_React$Component) {
     key: "handleTimer",
     value: function handleTimer() {
       this.setState({
-        timeRemaining: event.target.value
+        timeRemaining: event.target.value,
+        timeSet: event.target.value
       });
     }
   }, {
@@ -372,7 +374,7 @@ var Main = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick() {
           return _this2.handleConnect();
         }
-      }, "Disconnect")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.status === false ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "Disconnect")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.status === 'Stopped' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
           return _this2.handleStatus();
         }
@@ -481,7 +483,7 @@ var Timer = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this = this;
 
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " Select Time:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " Select Time (s):", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
         id: "dropdown",
         onChange: function onChange() {
           return _this.onTrigger();
